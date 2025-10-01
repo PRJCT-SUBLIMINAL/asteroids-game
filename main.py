@@ -61,6 +61,10 @@ def main():
             if asteroid.check_distance(player):
                 print('Game over!')
                 sys.exit()
+            for shot in shots:
+                if asteroid.check_distance(shot):
+                    asteroid.split()
+                    shot.kill()
 
 
 if __name__ == "__main__":
