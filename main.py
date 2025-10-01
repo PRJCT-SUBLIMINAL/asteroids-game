@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import *
 from player import *
@@ -22,7 +23,7 @@ def main():
 
     Player.containers = (updatable, drawable)
 
-    Player(x, y, PLAYER_RADIUS)
+    player = Player(x, y, PLAYER_RADIUS)
 
     asteroids = pygame.sprite.Group()
 
@@ -50,6 +51,11 @@ def main():
 
         updatable.update(dt)
         pygame.display.flip()
+
+        for asteroid in asteroids:
+            if asteroid.check_distance(player):
+                print('Game over!')
+                sys.exit()
 
 
 if __name__ == "__main__":
